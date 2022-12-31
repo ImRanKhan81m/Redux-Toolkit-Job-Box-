@@ -1,8 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
-import { Provider, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { RouterProvider } from "react-router-dom";
-import store from "./app/store";
 import { setUser } from "./features/auth/authSlice";
 import auth from "./firebase/firebase.config";
 import routes from "./routes/routes";

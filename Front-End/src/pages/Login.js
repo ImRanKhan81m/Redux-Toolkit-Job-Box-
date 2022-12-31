@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login.svg";
-import { loginUser } from "../features/auth/authSlice";
+import { googleLogin, loginUser } from "../features/auth/authSlice";
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const{isLoading, email} = useSelector(state => state.auth);
+  const { isLoading, email } = useSelector(state => state.auth);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -21,6 +21,10 @@ const Login = () => {
       navigate("/");
     }
   }, [email, navigate, isLoading]);
+
+  const handleGoogleLogin = () => {
+    dispatch(googleLogin());
+  };
 
   return (
     <div className='flex h-screen items-center'>
@@ -56,17 +60,24 @@ const Login = () => {
                   Login
                 </button>
               </div>
+
               <div>
-                <p>
+                <p className="text-sm text-center pt-1 pb-4">
                   Don't have an account?{" "}
                   <span
-                    className='text-primary hover:underline cursor-pointer'
+                    className='text-primary hover:underline cursor-pointer font-bold'
                     onClick={() => navigate("/signup")}
                   >
                     Sign up
                   </span>
                 </p>
               </div>
+
+              <button
+                onClick={()=> handleGoogleLogin()}
+                type='button'
+                className='font-bold text-white py-3 rounded-full bg-primary w-full'> Login with Google
+              </button>
             </div>
           </form>
         </div>
