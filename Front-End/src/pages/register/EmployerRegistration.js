@@ -1,19 +1,47 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useRegisterMutation } from "../../features/auth/authApi";
 import { FaChevronLeft } from "react-icons/fa";
 
 const EmployerRegistration = () => {
-  const [postUser, { isLoading, isError, data, error }] = useRegisterMutation()
+  const [countries, setCountries] = useState([]);
+
   const { handleSubmit, register, control } = useForm();
+  const term = useWatch({ control, name: "term" });
   const navigate = useNavigate();
+
+  const businessCategory = [
+    "Automotive",
+    "Business Support & Supplies",
+    "Computers & Electronics",
+    "Construction & Contractors",
+    "Design Agency",
+    "Education",
+    "Entertainment",
+    "Food & Dining",
+    "Health & Medicine",
+    "Home & Garden",
+    "IT Farm",
+    "Legal & Financial",
+    "Manufacturing, Wholesale, Distribution",
+    "Merchants (Retail)",
+    "Miscellaneous",
+    "Personal Care & Services",
+    "Real Estate",
+    "Travel & Transportation",
+  ];
+
+  const employeeRange = ["1 - 10", "11 - 50", "51 - 100", "Above 100"];
+
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all")
+      .then((res) => res.json())
+      .then((data) => setCountries(data));
+  }, []);
 
   const onSubmit = (data) => {
     console.log(data);
-    postUser({...data, role: "employer"})
   };
-
 
   return (
     <div className='pt-14'>
@@ -46,7 +74,7 @@ const EmployerRegistration = () => {
             <label className='mb-2' htmlFor='email'>
               Email
             </label>
-            <input type='email' id='email' {...register("email")} />
+            <input type='email' id='email' disabled {...register("email")} />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <h1 className='mb-3'>Gender</h1>
@@ -88,38 +116,45 @@ const EmployerRegistration = () => {
           </div>
           <hr className='w-full mt-2 bg-black' />
           <div className='flex flex-col w-full max-w-xs'>
-            <label className='mb-3' for='country'>
-              Country
+            <label className='mb-2' htmlFor='companyName'>
+              Company's name
             </label>
-            <select {...register("country")} id='country'>
-              {/* {countries
-                .sort((a, b) => a?.name?.common?.localeCompare(b?.name?.common))
-                .map(({ name }) => (
-                  <option value={name.common}>{name.common}</option>
-                ))} */}
-              <option value={'bangladesh'}>Bangladesh</option>
-              <option value={'india'}>India</option>
-              <option value={'pakistan'}>Pakistan</option>
+            <input type='text' {...register("companyName")} id='companyName' />
+          </div>
+          <div className='flex flex-col w-full max-w-xs'>
+            <label className='mb-3' for='employeeRange'>
+              Number of employee
+            </label>
+            <select {...register("employeeRange")} id='employeeRange'>
+              {employeeRange
+                .sort((a, b) => a.localeCompare(b))
+                .map((category) => (
+                  <option value={category}>{category}</option>
+                ))}
+            </select>
+          </div>
 
+          <div className='flex flex-col w-full max-w-xs'>
+            <label className='mb-3' for='companyCategory'>
+              Company's Category
+            </label>
+            <select {...register("companyCategory")} id='companyCategory'>
+              {businessCategory
+                .sort((a, b) => a.localeCompare(b))
+                .map((category) => (
+                  <option value={category}>{category}</option>
+                ))}
             </select>
           </div>
           <div className='flex flex-col w-full max-w-xs'>
-            <label className='mb-2' htmlFor='address'>
-              Street Address
+            <label className='mb-2' htmlFor='roleInCompany'>
+              Your role in company
             </label>
-            <input type='text' {...register("address")} id='address' />
-          </div>
-          <div className='flex flex-col w-full max-w-xs'>
-            <label className='mb-2' htmlFor='city'>
-              City
-            </label>
-            <input type='text' {...register("city")} id='city' />
-          </div>
-          <div className='flex flex-col w-full max-w-xs'>
-            <label className='mb-2' htmlFor='postcode'>
-              Postal Code
-            </label>
-            <input type='text' {...register("postcode")} id='postcode' />
+            <input
+              type='text'
+              {...register("roleInCompany")}
+              id='roleInCompany'
+            />
           </div>
 
           <div className='flex justify-between items-center w-full mt-3'>
@@ -132,7 +167,7 @@ const EmployerRegistration = () => {
               />
               <label for='terms'>I agree to terms and conditions</label>
             </div>
-            <button className='btn' type='submit'>
+            <button disabled={!term} className='btn' type='submit'>
               Submit
             </button>
           </div>
