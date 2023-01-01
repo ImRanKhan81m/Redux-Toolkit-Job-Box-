@@ -9,8 +9,8 @@ import auth from "../../firebase/firebase.config";
 const Navbar = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const { email, role } = user;
+  const { user:{email, role} } = useSelector((state) => state.auth);
+  // const { email, role } = user;
 
   const handleSignOut = () => {
     signOut(auth)
