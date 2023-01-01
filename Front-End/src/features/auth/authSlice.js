@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndP
 import auth from "../../firebase/firebase.config";
 
 const initialState = {
-   user: { email: "", role: ""},
+    user: { email: "", role: "" },
     isLoading: true,
     isError: false,
     error: "",
@@ -23,7 +23,10 @@ export const getUser = createAsyncThunk(
         // const res = await fetch(`${process.env.REACT_APP_DEV_URL}/user/${email}`);
         const res = await fetch(`${process.env.REACT_APP_DEV_URL}user/${email}`);
         const data = await res.json();
-        return data.data;
+        if (data.status) {
+            return data;
+        }
+        return email;
     }
 )
 export const loginUser = createAsyncThunk(
@@ -125,7 +128,11 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isError = false;
                 state.error = "";
-                state.user = payload
+                if (payload.status) {
+                    state.user = payload.data
+                }else{
+                    state.user.email = payload;
+                }
             })
             .addCase(getUser.rejected, (state, action) => {
                 state.isLoading = false;
@@ -138,4 +145,4 @@ const authSlice = createSlice({
 
 export default authSlice.reducer;
 
-export const { logOut, setUser, toggleLoading,  } = authSlice.actions;
+export const { logOut, setUser, toggleLoading, } = authSlice.actions;
