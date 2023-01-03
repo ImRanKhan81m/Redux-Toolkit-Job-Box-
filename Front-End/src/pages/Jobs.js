@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Jobs = () => {
   const navigate = useNavigate();
+  
 
   return (
     <div className='pt-14'>
