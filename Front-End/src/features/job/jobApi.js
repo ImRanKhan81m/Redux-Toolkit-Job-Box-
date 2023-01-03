@@ -22,4 +22,4 @@ const jobApi = apiSlice.injectEndpoints({
     })
 });
 
-export const { usePostJobMutation, useGetJobByIdQuery,useGetJobsQuery } = jobApi;
+export const { usePostJobMutation, useGetJobByIdQuery, useGetJobsQuery } = jobApi;
