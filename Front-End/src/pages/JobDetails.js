@@ -9,7 +9,6 @@ const JobDetails = () => {
   const { data, isLoading, isError } = useGetJobByIdQuery(id)
   const { employmentType, companyName, experience, location, overview, position, requirements, responsibilities, salaryRange, skills, workLevel } = data?.data || {}
 
-  console.log(data)
   return (
     <div className='pt-14'>
       <div className="bg-red-100 p-10">
