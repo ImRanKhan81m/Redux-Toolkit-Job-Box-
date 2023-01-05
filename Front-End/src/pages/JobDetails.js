@@ -26,6 +26,11 @@ const JobDetails = () => {
     _id,
   } = data?.data || {};
 
+  const handleApply = () => {
+    const data = {}
+    // navigate(`/apply/${_id}`)
+  }
+
   return (
     <div className='pt-14 grid grid-cols-12 gap-5'>
       <div className='col-span-9 mb-10'>
@@ -35,7 +40,9 @@ const JobDetails = () => {
         <div className='space-y-5'>
           <div className='flex justify-between items-center mt-5'>
             <h1 className='text-xl font-semibold text-primary'>{position}</h1>
-            <button className='btn'>Apply</button>
+            <button 
+            onClick={handleApply}
+            className='btn'>Apply</button>
           </div>
           <div>
             <h1 className='text-primary text-lg font-medium mb-3'>Overview</h1>
