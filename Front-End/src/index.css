@@ -5,6 +5,7 @@
 @layer base {
   html {
     font-family: "Poppins", sans-serif;
+ 
   }
 
   
@@ -41,3 +42,11 @@
 .btn {
   @apply px-4 py-2 border border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all hover:px-6 disabled:text-gray-300 disabled:border-gray-300 disabled:hover:px-4 disabled:hover:bg-transparent disabled:cursor-not-allowed;
 }
+
+body{
+  max-width: 1280px !important;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
