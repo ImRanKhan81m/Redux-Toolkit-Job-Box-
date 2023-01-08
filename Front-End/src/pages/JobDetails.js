@@ -4,6 +4,7 @@ import { BsArrowRightShort, BsArrowReturnRight } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetJobByIdQuery } from "../features/job/jobApi";
+import { toast } from "react-hot-toast";
 
 const JobDetails = () => {
   const { user } = useSelector((state) => state.auth);
@@ -27,8 +28,21 @@ const JobDetails = () => {
   } = data?.data || {};
 
   const handleApply = () => {
-    const data = {}
-    // navigate(`/apply/${_id}`)
+
+    if(user.role === 'employer') {
+      toast.error("You need to be an candidate account to apply for a job")
+    }
+    if(user.role === ''){
+      navigate('/register')
+      return
+    }
+
+    const data = {
+      userId: user?._id,
+      email: user?.email,
+      jobId: _id,
+    }
+    console.log(data)
   }
 
   return (
