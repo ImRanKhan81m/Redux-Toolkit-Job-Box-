@@ -7,7 +7,6 @@ const Jobs = () => {
   const { data, isLoading, isError } = useGetJobsQuery();
 
 
-
   return (
     <div className='pt-14'>
       <h1 className="mt-10">This is job page</h1>
