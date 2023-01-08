@@ -26,6 +26,7 @@ const JobDetails = () => {
     queries,
     _id,
   } = data?.data || {};
+  
 
   const handleApply = () => {
 
