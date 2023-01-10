@@ -26,7 +26,7 @@ const JobDetails = () => {
     queries,
     _id,
   } = data?.data || {};
-  
+
 
   const handleApply = () => {
 
@@ -34,7 +34,7 @@ const JobDetails = () => {
       toast.error("You need to be an candidate account to apply for a job")
     }
     if(user.role === ''){
-      navigate('/register')
+      navigate('/login')
       return
     }
 
