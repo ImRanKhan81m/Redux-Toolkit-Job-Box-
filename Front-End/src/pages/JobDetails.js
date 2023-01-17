@@ -46,6 +46,8 @@ const JobDetails = () => {
     console.log(data)
   }
 
+  
+
   return (
     <div className='pt-14 grid grid-cols-12 gap-5'>
       <div className='col-span-9 mb-10'>
