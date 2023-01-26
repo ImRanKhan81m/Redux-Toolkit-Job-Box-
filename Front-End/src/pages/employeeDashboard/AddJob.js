@@ -12,7 +12,7 @@ const AddJob = () => {
     }
   });
 
-  
+
   const [postJob, {isLoading, isError, error}] = usePostJobMutation()
   const {
     fields: resFields,
@@ -24,6 +24,8 @@ const AddJob = () => {
     append: skillAppend,
     remove: skillRemove,
   } = useFieldArray({ control, name: "skills" });
+
+
   const {
     fields: reqFields,
     append: reqAppend,
@@ -34,6 +36,7 @@ const AddJob = () => {
     console.log(data);
     postJob({...data, applicants:[], queries:[]})
   };
+
 
   return (
     <div className='flex justify-center items-center overflow-auto p-10'>
@@ -54,6 +57,7 @@ const AddJob = () => {
           <label className='mb-2' htmlFor='companyName'>
             Company Name
           </label>
+          
           <input
             disabled
             className='cursor-not-allowed'
