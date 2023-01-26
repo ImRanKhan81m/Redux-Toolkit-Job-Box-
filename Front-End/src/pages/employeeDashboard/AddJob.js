@@ -11,6 +11,8 @@ const AddJob = () => {
       companyName
     }
   });
+
+  
   const [postJob, {isLoading, isError, error}] = usePostJobMutation()
   const {
     fields: resFields,
