@@ -58,6 +58,8 @@ const AddJob = () => {
             Company Name
           </label>
           
+
+          
           <input
             disabled
             className='cursor-not-allowed'
