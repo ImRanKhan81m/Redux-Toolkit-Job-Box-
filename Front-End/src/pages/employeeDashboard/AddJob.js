@@ -57,9 +57,6 @@ const AddJob = () => {
           <label className='mb-2' htmlFor='companyName'>
             Company Name
           </label>
-          
-
-          
           <input
             disabled
             className='cursor-not-allowed'
