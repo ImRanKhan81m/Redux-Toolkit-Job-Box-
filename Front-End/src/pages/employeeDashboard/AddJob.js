@@ -71,6 +71,7 @@ const AddJob = () => {
           </label>
           <input type='text' id='experience' {...register("experience")} />
         </div>
+        
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-2' htmlFor='workLevel'>
             Work Level
