@@ -65,6 +65,7 @@ const AddJob = () => {
             {...register("companyName")}
           />
         </div>
+        
         <div className='flex flex-col w-full max-w-xs'>
           <label className='mb-2' htmlFor='experience'>
             Experience
