@@ -44,6 +44,7 @@ const Signup = () => {
   const handleGoogleLogin = () => {
     dispatch(googleLogin());
   };
+  
 
   useEffect(() => {
     if (isError) {
