@@ -41,6 +41,8 @@ const Signup = () => {
     }
   }, [email, navigate, isLoading]);
 
+
+  
   const handleGoogleLogin = () => {
     dispatch(googleLogin());
   };
