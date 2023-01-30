@@ -17,8 +17,6 @@ const Login = () => {
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
-
-  
   useEffect(() => {
     if (!isLoading && email) {
       toast.success("Login successful");
