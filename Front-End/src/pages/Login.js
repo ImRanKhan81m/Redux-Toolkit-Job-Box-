@@ -34,7 +34,6 @@ const Login = () => {
       toast.error(error);
     }
   }, [isError, error]);
-
   
   return (
     <div className='flex h-screen items-center'>
