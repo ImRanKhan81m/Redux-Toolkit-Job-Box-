@@ -28,7 +28,6 @@ const Login = () => {
     dispatch(googleLogin());
   };
 
-
   useEffect(() => {
     if (isError) {
       toast.error(error);
